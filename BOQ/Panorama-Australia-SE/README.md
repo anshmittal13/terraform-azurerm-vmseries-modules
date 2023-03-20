@@ -1,1 +1,0 @@
-Panorama Australia SE
