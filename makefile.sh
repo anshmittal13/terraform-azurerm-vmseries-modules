@@ -3,7 +3,7 @@
 set -o pipefail
 set -e
 
-TFPLAN=gh_ci.tfplan
+COMMAND=$1
 
 case $1 in
   init)
@@ -23,45 +23,29 @@ case $1 in
 
   plan)
     echo "::  PLANNING INFRASTRUCTURE  ::"
-    TF_PARAMS=${@: 2}
-    terraform plan ${TF_PARAMS} | nl -bn
+    terraform plan -var-file=ghci.tfvars | nl -bn
     echo
     ;;
 
-  plan_file)
-    echo "::  CREATING INFRASTRUCTURE PLAN FILE  ::"
-    TF_PARAMS=${@: 2}
-    terraform plan ${TF_PARAMS} -out ${TFPLAN} | nl -bn
+  apply)
+    echo "::  APPLYING INFRASTRUCTURE  ::"
+    terraform apply -auto-approve -var-file=ghci.tfvars | nl -bn
     echo
     ;;
 
-  apply_file)
-    echo "::  APPLYING INFRASTRUCTURE PLAN FILE  ::"
-    if [ -f "${TFPLAN}" ]; then
-      terraform apply ${TFPLAN} | nl -bn
-    else
-      echo "No TFPLAN file."
-      exit 1
-    fi
-    echo
-    ;;
-
-  indepotency)
-    echo "::  TESTING INDEPOTENCY  ::"
-    TF_PARAMS=${@: 2}
-    terraform plan -detailed-exitcode ${TF_PARAMS} | nl -bn
+  idempotence)
+    echo "::  TESTING IDEMPOTENCE  ::"
+    terraform plan -detailed-exitcode -var-file=ghci.tfvars | nl -bn
     echo
     ;;
 
   destroy)
     echo "::  DESTROYING INFRASTRUCTURE  ::"
-    TF_PARAMS=${@: 2}
-    for G in ${TF_PARAMS[@]}; do az group delete -g "$G" -y --no-wait | nl -bn; done
-    echo
-
-    echo "::  REMOVING INFRASTRUCTURE PLAN FILE  ::"
-    if [ -f "${TFPLAN}" ]; then rm ${TFPLAN} | nl -bn; fi
-    echo
+    terraform destroy -auto-approve -var-file=ghci.tfvars  | nl -bn
     ;;
+
+  *)
+    echo "ERROR: wrong param passed:: [$1]"
+    exit 1
 
 esac
