@@ -14,7 +14,7 @@ enable_zones = false
 # --- VNET PART --- #
 vnets = {
   "vnet" = {
-    name          = "panorama-vnet"
+    name          = "lab-vnet"
     address_space = ["10.1.0.0/16"]
     network_security_groups = {
       "panorama" = {
