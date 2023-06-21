@@ -45,11 +45,11 @@ vmseries = {
     vnet_key          = "transit"
     bootstrap_options = {
       type               = "dhcp-client"
-      panorama-server    = "10.1.1.10"                       # TODO: update here                                      
-      dgname             = "test-dg"                          # TODO: update here
-      tplname            = "test-stack"                       # TODO: update here
-      vm-auth-key           = "498831055216963"               # TODO: update here
-      authcodes          = "D9709190"                         # TODO: update here
+      panorama-server    = "10.1.1.10"                                                          
+      dgname             = "test-dg"                         
+      tplname            = "test-stack"                       
+      vm-auth-key           = "<>"               # TODO: update here
+      authcodes          = "<>"                  # TODO: update here
     }
       
       
