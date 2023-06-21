@@ -53,7 +53,7 @@ vnets = {
   }
 }
 
-##vmseries_password = "firewall@123"
+vmseries_password = "firewall@123"
 
 panorama_version = "10.2.3"
 
