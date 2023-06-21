@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<config version="10.2.0" urldb="paloaltonetworks" detail-version="10.2.3">
+  <mgt-config>
+    <devices/>
+    <users>
+      <entry name="admin">
+        <phash>*</phash>
+        <permissions>
+          <role-based>
+            <superuser>yes</superuser>
+          </role-based>
+        </permissions>
+      </entry>
+      <entry name="panadmin">
+        <phash>$5$pfvjjasx$nAnD2ang5gDjmE86aX.wKCL9rYcEBnGCi6wWui244f7</phash>
+        <permissions>
+          <role-based>
+            <superuser>yes</superuser>
+          </role-based>
+        </permissions>
+      </entry>
+      <entry name="__vm_series">
+        <phash>$5$ruhrsykk$7IoKoqkvE9SO3RjdHhJA58L.cKLcFw36JOB/5gpImpD</phash>
+        <permissions>
+          <role-based>
+            <panorama-admin>yes</panorama-admin>
+          </role-based>
+        </permissions>
+      </entry>
+      <entry name="firewall">
+        <permissions>
+          <role-based>
+            <superuser>yes</superuser>
+          </role-based>
+        </permissions>
+        <phash>$5$qphtibat$WZzZUVU8k1CnyGiITA9O3Pyf0hQ0Izy9n5YXgY8FjhA</phash>
+      </entry>
+    </users>
+    <password-complexity>
+      <enabled>yes</enabled>
+      <minimum-length>8</minimum-length>
+    </password-complexity>
+  </mgt-config>
+  <shared/>
+  <devices>
+    <entry name="localhost.localdomain">
+      <deviceconfig>
+        <system>
+          <update-server>updates.paloaltonetworks.com</update-server>
+          <update-schedule>
+            <threats>
+              <recurring>
+                <weekly>
+                  <day-of-week>wednesday</day-of-week>
+                  <at>01:02</at>
+                  <action>download-only</action>
+                </weekly>
+              </recurring>
+            </threats>
+          </update-schedule>
+          <timezone>US/Pacific</timezone>
+          <service>
+            <disable-telnet>yes</disable-telnet>
+            <disable-http>yes</disable-http>
+          </service>
+          <device-telemetry>
+            <threat-prevention>yes</threat-prevention>
+            <device-health-performance>yes</device-health-performance>
+            <product-usage>yes</product-usage>
+          </device-telemetry>
+          <type>
+            <dhcp-client>
+              <send-hostname>yes</send-hostname>
+              <send-client-id>no</send-client-id>
+              <accept-dhcp-hostname>no</accept-dhcp-hostname>
+              <accept-dhcp-domain>no</accept-dhcp-domain>
+            </dhcp-client>
+          </type>
+          <hostname>Palo-panorama01</hostname>
+        </system>
+        <setting>
+          <management>
+            <storage-partition>
+              <internal/>
+            </storage-partition>
+            <hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
+            <initcfg>
+              <type>
+                <dhcp-client>
+                  <send-hostname>yes</send-hostname>
+                  <send-client-id>no</send-client-id>
+                  <accept-dhcp-hostname>no</accept-dhcp-hostname>
+                  <accept-dhcp-domain>no</accept-dhcp-domain>
+                </dhcp-client>
+              </type>
+              <hostname>Palo-panorama01</hostname>
+              <username>panadmin</username>
+            </initcfg>
+          </management>
+        </setting>
+      </deviceconfig>
+      <device-group>
+        <entry name="test-dg">
+          <devices/>
+        </entry>
+      </device-group>
+      <template-stack>
+        <entry name="test-stack">
+          <user-group-source/>
+          <settings/>
+          <templates>
+            <member>test-temp</member>
+          </templates>
+        </entry>
+      </template-stack>
+      <template>
+        <entry name="test-temp">
+          <settings>
+            <default-vsys>vsys1</default-vsys>
+          </settings>
+          <config>
+            <devices>
+              <entry name="localhost.localdomain">
+                <vsys>
+                  <entry name="vsys1"/>
+                </vsys>
+              </entry>
+            </devices>
+          </config>
+        </entry>
+      </template>
+    </entry>
+  </devices>
+  <readonly>
+    <devices>
+      <entry name="localhost.localdomain">
+        <device-group>
+          <entry name="test-dg">
+            <id>11</id>
+          </entry>
+        </device-group>
+        <template-stack>
+          <entry name="test-stack">
+            <id>12</id>
+          </entry>
+        </template-stack>
+        <template>
+          <entry name="test-temp">
+            <id>13</id>
+          </entry>
+        </template>
+      </entry>
+    </devices>
+    <max-internal-id>13</max-internal-id>
+  </readonly>
+</config>
