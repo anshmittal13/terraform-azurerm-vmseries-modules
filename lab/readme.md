@@ -1,7 +1,7 @@
 
 **==================For Panorama==============================**
 If we want Panorama than we can just run Panorama terraform template.
-And if we need Firewall that can be run after the Panorama comes.
+And if we need Firewall that can be run after the Panorama comes up.
 
 After the Panorama comes up.
 
